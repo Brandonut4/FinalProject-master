@@ -5,21 +5,25 @@
 <div>
     <h1 style='font-weight: bold;'>Recipes</h1>
 </div>
-<br>
-    {% for r in rcp%}
-    <label style='color: rgba(66, 118, 65, 1);
-    font-weight: bold;
-    font-size: x-large;
-    display: block;
-    width: 150px;'>{{r.RecipeTitle}}</label>
-    <form name="form" method="post" action={% url 'showRecipe' r.id %}>
-        {% csrf_token %}
-        <input type = 'hidden' id='rcpID' name = 'rcpID' value = '{{r.id}}'>
-        <button type="submit" style='color: rgba(66, 118, 65, 1);'>View Recipe</button>
-    </form>
-    <br><br>
-​
-    {%endfor%}
-<button href={% url 'addRecipe'%} >Step 1: Add New Recipe</button>
+<button onclick="document.location={% url 'addRecipe'%}" >Step 1: Add New Recipe</button>
+<br><br><br>
+    <table>
+        <tr>
+          <th style="font-size: 25px; width: 20%"></th>
+          <th style="width: max-content"><u>Recipe</u></th>
+        </tr>
+        {% for r in rcp%}
+        <tr>
+          <td>
+            <form name="form" method="post" action={% url 'showRecipe' r.id %}>
+                {% csrf_token %}
+                <input type = 'hidden' id='rcpID' name = 'rcpID' value = '{{r.id}}'>
+                <button type="submit">View Recipe</button>
+            </form>
+          </td>
+          <td>{{r.RecipeTitle}}</td>
+        </tr>
+        {%endfor%}
+      </table>
 ​
 {% endblock %}
