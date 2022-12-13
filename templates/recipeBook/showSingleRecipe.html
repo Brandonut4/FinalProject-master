@@ -7,7 +7,7 @@
 <br>
 
 {% comment %} Creates a form to edit the recipie{% endcomment %}
-<form name="form" method="post" action="{% url 'updateRec' %}">
+<form name="form" id="form" method="post" action="{% url 'updateRec' %}">
     {% csrf_token %}
     <input type='hidden' id='rcpID' name='rcpID' value='{{rcp.id}}'>
 
@@ -25,13 +25,20 @@
         <input type='hidden' name='recIngID' id='recIngID' value={{i.id}}>
         <label name='recIng'>{{i.IngredientID.IngredientName}}</label>
         <input type='text' name='recIng' id='recIng' value='{{i.Amount}}' autofocus>
-        <a href={% url 'deleteRecipeIngredient' recIngID=i.id %}>Delete ingredient</a>
+        <button>
+            <a href="{% url 'deleteRecipeIngredient' recIngID=i.id %}">Delete ingredient</a>
+        </button>
         <br>
     {%endfor%}
     <button type="submit">Save</button>
 </form>
-<a href={% url 'chooseIngredients' recID=rcp.id %}>Add Ingredients</a>
-<a href={% url 'deleteRecipe' recID=rcp.id %}>Delete Recipe</a>
+<br>
+<button >
+    <a href="{% url 'chooseIngredients' recID=rcp.id %}">Add Ingredients</a>
+</button>
+<button >
+    <a href="{% url 'deleteRecipe' recID=rcp.id %}">Delete Recipe</a>
+</button>
 
 {%endblock%}
 

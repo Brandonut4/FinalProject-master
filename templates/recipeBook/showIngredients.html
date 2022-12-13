@@ -1,29 +1,32 @@
-{%extends 'base.html'%}
-{% load static%}
-{% block content %} 
-​
+{%extends 'base.html'%} {% load static%} {% block content %} ​
 <div>
-    <h1>Ingredients</h1>
+  <h1>Ingredients</h1>
 </div>
-<button onclick="document.location={% url 'addIngredient' %}">Add Ingredient</button>
-<br><br>
+<button onclick="document.location={% url 'addIngredient' %}">
+  Add Ingredient
+</button>
+<br /><br />
 <table>
-    <tr>
-      <th style="font-size: 25px; width:20%;"></th>
-      <th style="font-size: 25px; width:20%;"></th>
-      <th style="width: max-content;"><u>Ingredient</u></th>
-    </tr>
-    {% for i in ing%}
-    <tr>
-        <td>
-            <button onclick="document.location={% url 'deleteIngredient' ingID=i.id %}">Delete</button>
-        </td>
-      <td>
-        <button onclick="document.location={% url 'showIngredient' ingID=i.id %}">Edit</button>
+  <tr>
+    <th style="font-size: 25px; width: 20%"></th>
+    <th style="font-size: 25px; width: 20%"></th>
+    <th style="width: max-content"><u>Ingredient</u></th>
+  </tr>
+  {% for i in ing%}
+  <tr>
+    <td>
+      <button
+      >
+        <a href="{% url 'deleteIngredient' ingID=i.id %}">Delete</a>
+      </button>
+    </td>
+    <td>
+      <button>
+        <a href="{% url 'showIngredient' ingID=i.id %}">Edit</a>
+      </button>
     </td>
     <td>{{i.IngredientName}}</td>
-    </tr>
-    {%endfor%}
-  </table>
-​
-{% endblock %}
+  </tr>
+  {%endfor%}
+</table>
+​ {% endblock %}
