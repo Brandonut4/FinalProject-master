@@ -1,24 +1,25 @@
 {%extends 'base.html'%}
 {% load static%}
 {% block content %} 
-
+​
 <div>
-    <h1>Recipes</h1>
+    <h1 style='font-weight: bold;'>Recipes</h1>
 </div>
 <br>
-<p>
-   {% comment %} lists all the recipies and then allows you to view or delete them {% endcomment %}
     {% for r in rcp%}
-    <p>{{r.RecipeTitle}}</p>
+    <label style='color: rgba(66, 118, 65, 1);
+    font-weight: bold;
+    font-size: x-large;
+    display: block;
+    width: 150px;'>{{r.RecipeTitle}}</label>
     <form name="form" method="post" action={% url 'showRecipe' r.id %}>
         {% csrf_token %}
         <input type = 'hidden' id='rcpID' name = 'rcpID' value = '{{r.id}}'>
-        <button type="submit">View Recipe</button>
+        <button type="submit" style='color: rgba(66, 118, 65, 1);'>View Recipe</button>
     </form>
-    
-
+    <br><br>
+​
     {%endfor%}
-</p>
-<a href={% url 'addRecipe'%}>Step 1: Add Recipe</a>
-
+<button href={% url 'addRecipe'%} >Step 1: Add New Recipe</button>
+​
 {% endblock %}
